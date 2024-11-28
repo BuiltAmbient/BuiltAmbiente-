@@ -1,0 +1,179 @@
+# Project Structure for BuiltAmbiente Website
+
+PK
+   built-ambiente-website/
+   │
+   ├── components/
+   │   ├── Layout/
+   │   │   ├── Header.js
+   │   │   ├── Footer.js
+   │   │   └── Navigation.js
+   │   │
+   │   ├── Products/
+   │   │   ├── ProductCard.js
+   │   │   └── ProductDetails.js
+   │   │
+   │   ├── Services/
+   │   │   ├── ServiceCard.js
+   │   │   └── ServicesList.js
+   │   │
+   │   └── Common/
+   │       ├── SectionTitle.js
+   │       └── CallToAction.js
+   │
+   ├── pages/
+   │   ├── index.js
+   │   ├── products.js
+   │   ├── services.js
+   │   ├── about.js
+   │   └── contact.js
+   │
+   ├── public/
+   │   ├── images/
+   │   │   ├── logo.png
+   │   │   ├── team/
+   │   │   └── products/
+   │   │
+   │   └── documents/
+   │       ├── product-brochure.pdf
+   │       └── sustainability-report.pdf
+   │
+   ├── styles/
+   │   ├── globals.css
+   │   └── tailwind.css
+   │
+   ├── data/
+   │   ├── products.js
+   │   ├── services.js
+   │   └── team.js
+   │
+   ├── utils/
+   │   └── analytics.js
+   │
+   ├── .gitignore
+   ├── netlify.toml
+   ├── next.config.js
+   ├── package.json
+   ├── README.md
+   └── tailwind.config.js
+
+# 1. package.json
+{
+  "name": "built-ambiente-website",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next build && next export"
+  },
+  "dependencies": {
+    "next": "^13.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^3.3.2"
+  }
+}
+
+# 2. next.config.js
+module.exports = {
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true
+  }
+}
+
+# 3. tailwind.config.js
+module.exports = {
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}"
+  ],
+  theme: {
+    extend: {
+      colors: {
+        'built-green': '#2ecc71',
+        'built-blue': '#3498db'
+      }
+    }
+  }
+}
+
+# 4. pages/index.js
+import Navigation from '../components/Layout/Navigation';
+import Footer from '../components/Layout/Footer';
+
+export default function Home() {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navigation />
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section className="bg-built-green text-white py-20">
+          <div className="container mx-auto text-center">
+            <h1 className="text-4xl font-bold">
+              BuiltAmbiente: Sustainable Construction Solutions
+            </h1>
+            <p className="mt-4">
+              Innovative EPS Concrete Panels for a Greener Future
+            </p>
+          </div>
+        </section>
+
+        {/* Key Features */}
+        <section className="container mx-auto py-16">
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Feature Cards */}
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+# 5. README.md
+# BuiltAmbiente Sustainable Construction Solutions Website
+
+## Project Overview
+Sustainable construction materials website for BuiltAmbiente.
+
+## Setup Instructions
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run development server: `npm run dev`
+4. Build for production: `npm run build`
+
+## Deployment
+Deployed on Netlify. Automatic builds from main branch.
+
+## Technologies
+- Next.js
+- React
+- Tailwind CSS
+- Netlify Hosting
+
+## Contact
+Email: BuiltAmbiente@gmail.com
+Phone: +25674117077
+
+# 6. netlify.toml
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 7. .gitignore
+node_modules
+.next
+out
+build
+.env.local
